@@ -1,5 +1,5 @@
 # PhantomJS Scraper - Google Cloud Function
-A Google Cloud Function written in Node that retrieves a website with PhantomJS.
+A Google Cloud Function written in Node that retrieves a website with PhantomJS. This function is designed as a proxy for when you need rendered HTML in an environment that does not support PhantomJS.
 
 ## Installation
 Installation is relatively easy.
