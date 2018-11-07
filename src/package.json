@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://ryderdamen/gcf-phantom-scraper"
+    "url": "https://github.com/ryderdamen/Google-Cloud-Functions-PhantomJS-Scraper"
   },
   "keywords": [
     "PhantomJS",
