@@ -13,6 +13,12 @@ make install
 Next, change the name of `src/keysExample.js` to `src/keys.js` and replace the value for `accessToken`.
 It's up to you what you choose, but it will need to be in the post request body as the value for `key`.
 
+```bash
+cd src
+mv keysExample.js keys.js
+nano keys.js
+```
+
 ### Testing Locally
 Confirm everything was installed correctly
 
@@ -55,13 +61,13 @@ To use in production, simply make a POST request to your endpoint in Cloud Funct
 ```
 
 ### Timeouts
-Sometimes a page requires waiting a bit longer for all the elements to load. In this case, simply add a timeout in milliseconds to your post request.
+Sometimes a page requires waiting a bit longer for all the elements to load. In this case, simply add a timeout in milliseconds to your post request. This request will wait 3 seconds after the document is ready before returning the source.
 
 ```json
 {
-	"key": "Your Secret Key",
+    "key": "Your Secret Key",
     "url": "https://developer.mozilla.org/en-US/",
-    "timeout": "3000" // Wait 3 seconds after page load to return HTML
+    "timeout": "3000"
 }
 ```
 
