@@ -40,12 +40,14 @@ function loadWithPhantomJs(req, res) {
       browserName: 'phantomjs'
     }
   }
-  return phantomjs.run('--webdriver=4444').then( driver => {
+  return phantomjs.run('--ignore-ssl-errors=true', '--webdriver=4444', '--web-security=false', '--ssl-protocol=any').then( driver => {
     let client = webdriverio.remote(webdriverSettings)
     return client.init().url(url).pause(waitUntilTimeout).getSource().then( source => {
         res.send(source)
         driver.kill()
-      })
+      }).catch (error => {
+        console.log(error);
+      });
   })
 }
 
