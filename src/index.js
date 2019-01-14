@@ -32,15 +32,23 @@ function checkAuthorization(req, res) {
 function loadWithPhantomJs(req, res) {
   var url = req.body.url
   var waitUntilTimeout = 0
+  var phantomArgs = ['--webdriver=4444']
   if (req.body.hasOwnProperty('timeout')) {
     waitUntilTimeout = parseInt(req.body.timeout)
+  }
+  if (req.body.hasOwnProperty('insecure')) {
+    phantomArgs = phantomArgs.concat([
+      '--ignore-ssl-errors=true',
+      '--web-security=false',
+      '--ssl-protocol=any'
+    ])
   }
   var webdriverSettings = {
     desiredCapabilities: {
       browserName: 'phantomjs'
     }
   }
-  return phantomjs.run('--ignore-ssl-errors=true', '--webdriver=4444', '--web-security=false', '--ssl-protocol=any').then( driver => {
+  return phantomjs.run.apply(this, phantomArgs).then(driver => {
     let client = webdriverio.remote(webdriverSettings)
     return client.init().url(url).pause(waitUntilTimeout).getSource().then( source => {
         res.send(source)
